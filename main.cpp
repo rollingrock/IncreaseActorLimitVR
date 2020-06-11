@@ -26,11 +26,11 @@ bool loadConfig() {
 bool doFix() {
 
 	if (numActors != 128) {
-		UInt8 x = numActors & 0xFF;
-		SKSE::SafeWrite8(firstLocaction.GetAddress() + 1, x);
-		SKSE::SafeWrite8(secondLocaction.GetAddress() + 1, x);
+		UInt32 x = numActors & 0xFFFFFFFF;
+		SKSE::SafeWrite32(firstLocaction.GetAddress() + 1, x);
+		SKSE::SafeWrite32(secondLocaction.GetAddress() + 1, x);
 
-		_MESSAGE("patched offsets %016I64X and %016I64X", firstLocaction.GetOffset(), secondLocaction.GetOffset());
+		_MESSAGE("patched offsets %x and %x wtih value of %d", firstLocaction.GetOffset(), secondLocaction.GetOffset(), x);
 		return true;
 	}
 
